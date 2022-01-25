@@ -84,7 +84,7 @@ export default class Level extends Phaser.Scene
   {
     player.scene.lose.play();
     player.scene.pauseGame();
-    player.lose();
+    player.playerLose();
     player.scene.timeoutToMenu();
   }
 
@@ -101,6 +101,7 @@ export default class Level extends Phaser.Scene
 
   toMenu()
   {
+    this.player.lose = false;
     console.log("to menu");
     this.scene.start('menu');
   }

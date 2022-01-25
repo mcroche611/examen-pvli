@@ -16,6 +16,9 @@ export default class Player extends Phaser.GameObjects.Sprite
   {
     super(scene, x, y, 'playeranim');
 
+    this.myHeight = 12;
+    this.lose = false;
+
     this.citizens = 0;
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
@@ -23,7 +26,8 @@ export default class Player extends Phaser.GameObjects.Sprite
     this.inputEnabled = true;
     this.shootEnabled = true; //Si no está en cooldown
 
-    this.citizensText = this.scene.add.text(this.x, this.y - this.myHeight, "");
+    this.citizensText = this.scene.add.text(this.x - this.width, this.y - this.height, "");
+    this.citizensText.setScale(0.5, 0.5);
 
     this.body.setCollideWorldBounds();
 
@@ -34,7 +38,7 @@ export default class Player extends Phaser.GameObjects.Sprite
     this.dir = [0, 1];
 
     // Esta label es la UI en la que pondremos la puntuación del jugador
-    this.label = this.scene.add.text(10, 10, "");
+
     this.cursors = this.scene.input.keyboard.createCursorKeys();
     this.zKey = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z);
     this.space = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
@@ -80,8 +84,8 @@ export default class Player extends Phaser.GameObjects.Sprite
 
   updateCitizens()
   {
-    this.citizensText.x = this.x;
-    this.citizensText.y = this.y - this.myHeight;
+    this.citizensText.x = this.x - this.width;
+    this.citizensText.y = this.y - this.height;
 
     this.citizensText.text = this.citizens + "/" + this.scene.numCitizens;
   }
@@ -91,9 +95,9 @@ export default class Player extends Phaser.GameObjects.Sprite
     this.shootEnabled = true;
   }
 
-  lose()
+  playerLose()
   {
-    //rotación sobre si mismo
+    this.lose = true;
   }
 
   /**
@@ -174,6 +178,13 @@ export default class Player extends Phaser.GameObjects.Sprite
     if (this.esc.isDown)
     {
       this.scene.scene.start('menu');
+    }
+
+    this.updateCitizens();
+
+    if (this.lose)
+    {
+      this.angle += 10;
     }
   }
 }

@@ -12,7 +12,9 @@ export default class Menu extends Phaser.Scene
 
     let x = 80;
 
-    let text = this.add.text(x, 40, 'Facil');
+    let text0 = this.add.text(x - 10, 40, 'ROBOTRON 2048');
+
+    let text = this.add.text(x, 80, 'Facil');
     text.setInteractive({ useHandCursor: true });
     text.on('pointerdown', () => 
     {
@@ -23,7 +25,7 @@ export default class Menu extends Phaser.Scene
       this.scene.start('level', paramNivel);
     });
 
-    let text2 = this.add.text(x, 80, 'Intermedio');
+    let text2 = this.add.text(x, 120, 'Intermedio');
     text2.setInteractive({ useHandCursor: true });
     text2.on('pointerdown', () => 
     {
@@ -34,7 +36,7 @@ export default class Menu extends Phaser.Scene
       this.scene.start('level', paramNivel);
     });
 
-    let text3 = this.add.text(x, 120, 'Dificil');
+    let text3 = this.add.text(x, 160, 'Dificil');
     text3.setInteractive({ useHandCursor: true });
     text3.on('pointerdown', () => 
     {
