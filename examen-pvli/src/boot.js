@@ -46,6 +46,7 @@ export default class Boot extends Phaser.Scene
     this.load.audio('pick', 'pick.wav');
     this.load.audio('win', 'win.wav');
     this.load.audio('lose', 'lose.wav');
+    this.load.audio('shoot', 'shoot.wav');
   }
 
   /**

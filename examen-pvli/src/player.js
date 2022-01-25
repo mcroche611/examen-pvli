@@ -154,6 +154,8 @@ export default class Player extends Phaser.GameObjects.Sprite
 
     if (this.zKey.isDown && this.shootEnabled)
     {
+      this.scene.shoot.play();
+      
       let bomb = new Bomb(this.scene, this.x, this.y);
 
       this.scene.bombs.add(bomb);
@@ -161,7 +163,7 @@ export default class Player extends Phaser.GameObjects.Sprite
       this.shootEnabled = false;
 
       let myTimeout = this.scene.time.addEvent({
-        delay: 1000,                // ms
+        delay: 200,                // ms
         callback: this.enableShoot,
         args: [],
         callbackScope: this,

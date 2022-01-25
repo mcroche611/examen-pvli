@@ -12,16 +12,29 @@ export default class Citizen extends Phaser.GameObjects.Sprite
 
         this.speed = 50;
 
-        //dir aleatoria
-        let dirX = Phaser.Math.Between(-1, 1);
-        let dirY = Phaser.Math.Between(-1, 1);
-
-        if (dirX == 0 && dirY == 0)
-            dirX = 1;
-
-        this.body.velocity.set(this.speed * dirX, this.speed * dirY);
+        this.setDir();
 
         this.body.bounce.set(1);
+    }
+
+    //dir aleatoria
+    setDir()
+    {
+        this.dirX = Phaser.Math.Between(-1, 1);
+        this.dirY = Phaser.Math.Between(-1, 1);
+
+        if (this.dirX == 0 && this.dirY == 0)
+            this.dirX = 1;
+
+        this.body.velocity.set(this.speed * this.dirX, this.speed * this.dirY);
+
+        let myTimeout = this.scene.time.addEvent({
+            delay: 2000,                // ms
+            callback: this.setDir,
+            args: [],
+            callbackScope: this,
+            loop: false
+          });
     }
 
     /**

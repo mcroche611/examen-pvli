@@ -25,6 +25,7 @@ export default class Level extends Phaser.Scene
     this.pick = this.sound.add('pick');
     this.win = this.sound.add('win');
     this.lose = this.sound.add('lose');
+    this.shoot = this.sound.add('shoot');
 
     this.player = new Player(this, 20, 20);
 
